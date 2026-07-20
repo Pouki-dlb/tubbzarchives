@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-label="Image manquante">
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" role="img" aria-label="Photo coming soon">
   <rect width="400" height="400" fill="#e9edf2"/>
   <g fill="none" stroke="#b7c1cc" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
     <!-- petit canard stylisé -->
@@ -7,5 +7,5 @@
     <circle cx="268" cy="170" r="7" fill="#3a3a3a" stroke="none"/>
     <path d="M300 185 l40 -8 l-30 26 z" fill="#f39c12" stroke="#d9860b"/>
   </g>
-  <text x="200" y="345" font-family="system-ui, sans-serif" font-size="24" fill="#8a97a5" text-anchor="middle">Photo à venir</text>
+  <text x="200" y="345" font-family="system-ui, sans-serif" font-size="24" fill="#8a97a5" text-anchor="middle">Photo coming soon</text>
 </svg>

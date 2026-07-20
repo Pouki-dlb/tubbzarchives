@@ -15,9 +15,9 @@
     root.setAttribute("aria-busy", "false");
     root.innerHTML =
       '<div class="error">' +
-        '<p><strong>Figurine introuvable.</strong></p>' +
-        (id ? '<p class="muted">Aucun canard avec l\'identifiant « ' + T.esc(id) + ' ».</p>' : '') +
-        '<p><a class="btn" href="index.html">← Retour au catalogue</a></p>' +
+        '<p><strong>Figurine not found.</strong></p>' +
+        (id ? '<p class="muted">No duck with the id "' + T.esc(id) + '".</p>' : '') +
+        '<p><a class="btn" href="index.html">← Back to catalog</a></p>' +
       '</div>';
   }
 
@@ -52,7 +52,7 @@
           '</div>' +
           '<label class="variant-check">' +
             '<input type="checkbox" data-key="' + T.esc(key) + '"' + (owned ? " checked" : "") + ' />' +
-            '<span>Je la possède</span>' +
+            '<span>I own it</span>' +
           '</label>' +
         '</div>'
       );
@@ -69,24 +69,22 @@
             '<p class="duck-franchise">' + T.esc(fig.franchise) + '</p>' +
             '<h1 class="duck-name">' + T.esc(fig.name) + '</h1>' +
             '<dl class="duck-meta">' +
-              (fig.category ? '<div><dt>Catégorie</dt><dd>' + T.esc(fig.category) + '</dd></div>' : '') +
-              (fig.releaseDate ? '<div><dt>Date de sortie</dt><dd>' + T.esc(T.formatDate(fig.releaseDate)) + '</dd></div>' : '') +
+              (fig.releaseYear ? '<div><dt>Release year</dt><dd>' + T.esc(fig.releaseYear) + '</dd></div>' : '') +
             '</dl>' +
             '<button id="btn-wish" type="button" class="btn btn-wish' + (wished ? " is-active" : "") + '">' +
-              (wished ? "❤ Dans la wishlist" : "♡ Ajouter à la wishlist") +
+              (wished ? "❤ In wishlist" : "♡ Add to wishlist") +
             '</button>' +
           '</div>' +
         '</div>' +
 
         '<section class="duck-section">' +
-          '<h2>Versions &amp; emballages</h2>' +
-          '<div class="variants">' + (variantsHTML || '<p class="muted">Aucune variante renseignée.</p>') + '</div>' +
+          '<h2>Versions &amp; packaging</h2>' +
+          '<div class="variants">' + (variantsHTML || '<p class="muted">No variant listed.</p>') + '</div>' +
         '</section>' +
 
         '<section class="duck-section">' +
-          '<h2>Ma note</h2>' +
-          '<textarea id="note" class="note" rows="3" placeholder="Prix payé, état, où trouvée…">' + T.esc(T.getNote(state, fig.id)) + '</textarea>' +
-          '<p class="muted note-hint">Enregistrée automatiquement dans ce navigateur.</p>' +
+          '<h2>My note</h2>' +
+          '<textarea id="note" class="note" rows="3" placeholder="Price paid, condition, where found…">' + T.esc(T.getNote(state, fig.id)) + '</textarea>' +
         '</section>' +
       '</article>';
 
@@ -112,7 +110,7 @@
     btnWish.addEventListener("click", function () {
       var now = T.toggleWishlist(state, fig.id);
       btnWish.classList.toggle("is-active", now);
-      btnWish.textContent = now ? "❤ Dans la wishlist" : "♡ Ajouter à la wishlist";
+      btnWish.textContent = now ? "❤ In wishlist" : "♡ Add to wishlist";
     });
 
     // Note (sauvegarde à la volée, débounce léger)
@@ -140,9 +138,9 @@
     .catch(function (err) {
       root.setAttribute("aria-busy", "false");
       root.innerHTML =
-        '<div class="error"><p><strong>Impossible de charger le catalogue.</strong></p>' +
+        '<div class="error"><p><strong>Could not load the catalog.</strong></p>' +
         '<p class="muted">' + T.esc(err.message) + '</p>' +
-        '<p><a class="btn" href="index.html">← Retour</a></p></div>';
+        '<p><a class="btn" href="index.html">← Back</a></p></div>';
       console.error(err);
     });
 })();

@@ -1,18 +1,18 @@
-/* data.js — LE CATALOGUE des figurines Tubbz.
+/* data.js — THE CATALOG of Tubbz figurines.
  *
- * C'est le seul fichier à alimenter (ex. avec la sortie de votre scraping).
- * On utilise un fichier .js (et non .json) pour que le site fonctionne par simple
- * double-clic sur index.html (file://), sans aucun serveur.
+ * This is the only file you need to fill in (e.g. with the output of your scraping).
+ * We use a .js file (not .json) so the site works by simply double-clicking
+ * index.html (file://), without any server.
  *
- * Le contenu est du JSON normal, simplement affecté à window.TUBBZ_DATA.
- * Voir README.md pour le détail des champs.
+ * The content is plain JSON, just assigned to window.TUBBZ_DATA.
+ * See README.md for the field details.
  */
 window.TUBBZ_DATA = {
   "meta": {
     "sizes": ["classic", "mini", "xl"],
     "packaging": ["first-edition", "boxed"],
     "labels": {
-      "sizes": { "classic": "Classique", "mini": "Mini", "xl": "XL" },
+      "sizes": { "classic": "Classic", "mini": "Mini", "xl": "XL" },
       "packaging": { "first-edition": "First Edition", "boxed": "Boxed" }
     }
   },
@@ -21,8 +21,7 @@ window.TUBBZ_DATA = {
       "id": "fallout-vault-boy",
       "name": "Vault Boy",
       "franchise": "Fallout",
-      "category": "Jeux vidéo",
-      "releaseDate": "2020-05-01",
+      "releaseYear": "2020",
       "image": "images/placeholder.svg",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/placeholder.svg" },
@@ -34,8 +33,7 @@ window.TUBBZ_DATA = {
       "id": "darksouls-solaire",
       "name": "Solaire of Astora",
       "franchise": "Dark Souls",
-      "category": "Jeux vidéo",
-      "releaseDate": "2021-03-15",
+      "releaseYear": "2021",
       "image": "images/placeholder.svg",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/placeholder.svg" },
@@ -46,8 +44,7 @@ window.TUBBZ_DATA = {
       "id": "jaws-great-white-shark",
       "name": "Great White Shark",
       "franchise": "Jaws",
-      "category": "Films",
-      "releaseDate": "2022-06-20",
+      "releaseYear": "2022",
       "image": "images/placeholder.svg",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/placeholder.svg" },
@@ -58,8 +55,7 @@ window.TUBBZ_DATA = {
       "id": "harrypotter-gryffindor",
       "name": "Harry Potter (Gryffindor)",
       "franchise": "Harry Potter",
-      "category": "Films",
-      "releaseDate": "2023-09-01",
+      "releaseYear": "2023",
       "image": "images/placeholder.svg",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/placeholder.svg" },
@@ -71,8 +67,7 @@ window.TUBBZ_DATA = {
       "id": "tmnt-leonardo",
       "name": "Leonardo",
       "franchise": "Teenage Mutant Ninja Turtles",
-      "category": "Séries",
-      "releaseDate": "2022-11-10",
+      "releaseYear": "2022",
       "image": "images/placeholder.svg",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/placeholder.svg" },

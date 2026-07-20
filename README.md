@@ -35,7 +35,7 @@ window.TUBBZ_DATA = {
     "sizes": ["classic", "mini", "xl"],
     "packaging": ["first-edition", "boxed"],
     "labels": {
-      "sizes": { "classic": "Classique", "mini": "Mini", "xl": "XL" },
+      "sizes": { "classic": "Classic", "mini": "Mini", "xl": "XL" },
       "packaging": { "first-edition": "First Edition", "boxed": "Boxed" }
     }
   },
@@ -44,8 +44,7 @@ window.TUBBZ_DATA = {
       "id": "fallout-vault-boy",
       "name": "Vault Boy",
       "franchise": "Fallout",
-      "category": "Jeux vidéo",
-      "releaseDate": "2020-05-01",
+      "releaseYear": "2020",
       "image": "images/fallout-vault-boy.png",
       "variants": [
         { "size": "classic", "packaging": "first-edition", "image": "images/fallout-vault-boy-classic-fe.png" },
@@ -65,9 +64,8 @@ window.TUBBZ_DATA = {
 |---------------|-------------|-------------------------------------------------------------------------|
 | `id`          | ✅          | Identifiant **unique et stable**. Sert de clé pour les coches du visiteur — **ne jamais le modifier** ensuite, sinon les collections se décalent. |
 | `name`        | ✅          | Nom du personnage.                                                       |
-| `franchise`   | ✅          | Licence (sert au regroupement, aux filtres et aux stats).               |
-| `category`    | ⬜          | Catégorie libre (« Jeux vidéo », « Films », « Séries »…).                |
-| `releaseDate` | ⬜          | Date ISO `AAAA-MM-JJ`.                                                   |
+| `franchise`   | ✅          | Licence (sert au regroupement et aux filtres).                          |
+| `releaseYear` | ⬜          | Année de sortie (ex. `"2026"`).                                          |
 | `image`       | ⬜          | Vignette affichée sur la grille. Repli : `images/placeholder.svg`.      |
 | `variants`    | ✅          | Liste des combinaisons **réellement existantes** (voir ci-dessous).     |
 

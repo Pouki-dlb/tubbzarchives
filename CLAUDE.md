@@ -7,7 +7,7 @@
 
 « Tubbz Archives » : une application web qui **archive les figurines Tubbz** (canards vinyle
 cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection**. Deux buts :
-1. cataloguer/catégoriser les figurines (photo, date de sortie, licence, catégorie, variantes) ;
+1. cataloguer les figurines (photo, année de sortie, licence, variantes) ;
 2. suivre ce que le visiteur possède, avec wishlist et notes.
 
 ## Contraintes NON négociables
@@ -42,7 +42,8 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
 
 ## Conventions
 
-- Interface **en français** ; noms de licences/personnages laissés tels quels.
+- Interface du site **en anglais uniquement** ; noms de licences/personnages laissés tels quels.
+  (Les commentaires de code peuvent rester en français.)
 - Tailles : `classic`, `mini`, `xl`. Emballages : `first-edition` (baignoire), `boxed` (boîte).
 - Images locales dans `images/` avec repli `placeholder.svg` (via `onerror` sur les `<img>`).
 - Le site doit rester ouvrable par **double-clic** sur `index.html` (`file://`) : ne PAS

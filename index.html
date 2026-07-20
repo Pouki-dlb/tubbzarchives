@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tubbz Archives — collection & suivi</title>
-  <meta name="description" content="Archive des figurines Tubbz et suivi de collection, sauvegardé dans votre navigateur." />
+  <title>Tubbz Archives — collection tracker</title>
+  <meta name="description" content="Archive of Tubbz figurines and collection tracker, saved in your browser." />
   <link rel="icon" href="images/placeholder.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,8 +16,9 @@
         <span class="brand-text">Tubbz <strong>Archives</strong></span>
       </a>
       <div class="header-actions">
-        <button id="btn-export" type="button" class="btn btn-ghost" title="Exporter votre collection dans un fichier de sauvegarde">Exporter</button>
-        <button id="btn-import" type="button" class="btn btn-ghost" title="Importer une sauvegarde">Importer</button>
+        <button id="btn-help" type="button" class="btn btn-ghost btn-icon" title="Why saving matters" aria-haspopup="dialog">?</button>
+        <button id="btn-export" type="button" class="btn btn-ghost" title="Export your collection to a backup file">Export</button>
+        <button id="btn-import" type="button" class="btn btn-ghost" title="Import a backup">Import</button>
         <input id="import-file" type="file" accept="application/json,.json" hidden />
       </div>
     </div>
@@ -28,56 +29,71 @@
 
     <section class="toolbar">
       <div class="search-box">
-        <input id="search" type="search" placeholder="Rechercher un canard, une licence…" autocomplete="off" aria-label="Rechercher" />
+        <input id="search" type="search" placeholder="Search a duck or a franchise…" autocomplete="off" aria-label="Search" />
       </div>
       <div class="filters">
         <label class="field">
-          <span>Licence</span>
-          <select id="filter-franchise"><option value="">Toutes</option></select>
+          <span>Franchise</span>
+          <select id="filter-franchise"><option value="">All</option></select>
         </label>
         <label class="field">
-          <span>Taille</span>
+          <span>Size</span>
           <select id="filter-size">
-            <option value="">Toutes</option>
-            <option value="classic">Classique</option>
+            <option value="">All</option>
+            <option value="classic">Classic</option>
             <option value="mini">Mini</option>
             <option value="xl">XL</option>
           </select>
         </label>
         <label class="field">
-          <span>Emballage</span>
+          <span>Packaging</span>
           <select id="filter-packaging">
-            <option value="">Tous</option>
+            <option value="">All</option>
             <option value="first-edition">First Edition</option>
             <option value="boxed">Boxed</option>
           </select>
         </label>
         <label class="field">
-          <span>Statut</span>
+          <span>Status</span>
           <select id="filter-status">
-            <option value="">Tous</option>
-            <option value="owned">Possédés</option>
-            <option value="not-owned">Non possédés</option>
+            <option value="">All</option>
+            <option value="owned">Owned</option>
+            <option value="not-owned">Not owned</option>
             <option value="wishlist">Wishlist</option>
           </select>
         </label>
-        <button id="btn-reset" type="button" class="btn btn-ghost btn-small">Réinitialiser</button>
+        <button id="btn-reset" type="button" class="btn btn-ghost btn-small">Reset</button>
       </div>
     </section>
 
     <p id="result-count" class="result-count" aria-live="polite"></p>
 
     <section id="grid" class="grid" aria-busy="true">
-      <p class="loading">Chargement du catalogue…</p>
+      <p class="loading">Loading catalog…</p>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>Vos coches sont enregistrées uniquement dans ce navigateur. Pensez à <strong>Exporter</strong> pour sauvegarder.</p>
-      <p class="muted">Tubbz™ est une marque de Numskull Designs. Ce projet est un outil de collection non officiel.</p>
+      <p class="muted">Tubbz™ is a trademark of Numskull Designs. This project is an unofficial collection tool.</p>
     </div>
   </footer>
+
+  <!-- Help / "why save" modal -->
+  <div id="help-modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-box" role="document">
+      <button class="modal-close" type="button" data-close aria-label="Close">✕</button>
+      <h2 id="help-title">Save your collection</h2>
+      <p>Your collection (the versions you own, your wishlist and notes) is stored
+        <strong>only in this browser</strong>. There is no account and nothing is sent anywhere.</p>
+      <p>That means your data can be <strong>lost</strong> if you clear your browsing data, use a
+        different browser, or switch to another device.</p>
+      <p>To keep it safe, use <strong>Export</strong> to download a backup file, and
+        <strong>Import</strong> to restore it later or on another device. Exporting from time to time
+        is the best way to avoid losing your progress.</p>
+    </div>
+  </div>
 
   <script src="data.js"></script>
   <script src="common.js"></script>

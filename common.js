@@ -44,7 +44,7 @@ window.Tubbz = (function () {
   /* ------------------------------------------------------------------ */
 
   var DEFAULT_LABELS = {
-    sizes: { classic: "Classique", mini: "Mini", xl: "XL" },
+    sizes: { classic: "Classic", mini: "Mini", xl: "XL" },
     packaging: { "first-edition": "First Edition", boxed: "Boxed" }
   };
 
@@ -202,18 +202,6 @@ window.Tubbz = (function () {
       .replace(/'/g, "&#39;");
   }
 
-  // Formate une date ISO (YYYY-MM-DD) en français lisible ; tolère les valeurs vides.
-  function formatDate(iso) {
-    if (!iso) return "";
-    var d = new Date(iso);
-    if (isNaN(d.getTime())) return iso;
-    try {
-      return d.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
-    } catch (e) {
-      return iso;
-    }
-  }
-
   return {
     PLACEHOLDER: PLACEHOLDER,
     loadCatalog: loadCatalog,
@@ -233,7 +221,6 @@ window.Tubbz = (function () {
     ownedCountOf: ownedCountOf,
     sizeLabel: sizeLabel,
     packagingLabel: packagingLabel,
-    esc: esc,
-    formatDate: formatDate
+    esc: esc
   };
 })();
