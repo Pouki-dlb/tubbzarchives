@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tubbz Archives — collection & suivi</title>
+  <meta name="description" content="Archive des figurines Tubbz et suivi de collection, sauvegardé dans votre navigateur." />
+  <link rel="icon" href="images/placeholder.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">🦆</span>
+        <span class="brand-text">Tubbz <strong>Archives</strong></span>
+      </a>
+      <div class="header-actions">
+        <button id="btn-export" type="button" class="btn btn-ghost" title="Exporter votre collection dans un fichier de sauvegarde">Exporter</button>
+        <button id="btn-import" type="button" class="btn btn-ghost" title="Importer une sauvegarde">Importer</button>
+        <input id="import-file" type="file" accept="application/json,.json" hidden />
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p id="storage-warning" class="storage-warning" role="alert" hidden></p>
+
+    <section class="toolbar">
+      <div class="search-box">
+        <input id="search" type="search" placeholder="Rechercher un canard, une licence…" autocomplete="off" aria-label="Rechercher" />
+      </div>
+      <div class="filters">
+        <label class="field">
+          <span>Licence</span>
+          <select id="filter-franchise"><option value="">Toutes</option></select>
+        </label>
+        <label class="field">
+          <span>Taille</span>
+          <select id="filter-size">
+            <option value="">Toutes</option>
+            <option value="classic">Classique</option>
+            <option value="mini">Mini</option>
+            <option value="xl">XL</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Emballage</span>
+          <select id="filter-packaging">
+            <option value="">Tous</option>
+            <option value="first-edition">First Edition</option>
+            <option value="boxed">Boxed</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Statut</span>
+          <select id="filter-status">
+            <option value="">Tous</option>
+            <option value="owned">Possédés</option>
+            <option value="not-owned">Non possédés</option>
+            <option value="wishlist">Wishlist</option>
+          </select>
+        </label>
+        <button id="btn-reset" type="button" class="btn btn-ghost btn-small">Réinitialiser</button>
+      </div>
+    </section>
+
+    <p id="result-count" class="result-count" aria-live="polite"></p>
+
+    <section id="grid" class="grid" aria-busy="true">
+      <p class="loading">Chargement du catalogue…</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Vos coches sont enregistrées uniquement dans ce navigateur. Pensez à <strong>Exporter</strong> pour sauvegarder.</p>
+      <p class="muted">Tubbz™ est une marque de Numskull Designs. Ce projet est un outil de collection non officiel.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="common.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* common.js — code partagé entre index.html et duck.html
+ * - Chargement du catalogue (data.json, servi statiquement).
+ * - Gestion de la collection du visiteur dans localStorage (coches, wishlist, notes).
+ *   IMPORTANT : le localStorage ne contient QUE les données personnelles du visiteur,
+ *   jamais le catalogue.
+ */
+
+// Expose un espace de noms global simple (pas de framework, pas de modules).
+window.Tubbz = (function () {
+  "use strict";
+
+  var STORAGE_KEY = "tubbz-collection";
+  var STATE_VERSION = 1;
+  var PLACEHOLDER = "images/placeholder.svg";
+
+  /* ------------------------------------------------------------------ */
+  /* Catalogue                                                          */
+  /* ------------------------------------------------------------------ */
+
+  // Lit le catalogue depuis window.TUBBZ_DATA (défini par data.js, chargé via <script>).
+  // Ce choix rend le site 100 % statique : il fonctionne par simple double-clic sur
+  // index.html (file://), sans serveur ni fetch. Renvoie une promesse résolue avec
+  // { meta, figurines }, triée par licence puis nom.
+  function loadCatalog() {
+    return new Promise(function (resolve, reject) {
+      var data = window.TUBBZ_DATA;
+      if (!data || typeof data !== "object") {
+        reject(new Error("Catalogue introuvable : le fichier data.js n'est pas chargé."));
+        return;
+      }
+      var meta = data.meta || {};
+      var figurines = Array.isArray(data.figurines) ? data.figurines.slice() : [];
+      figurines.sort(function (a, b) {
+        var byFranchise = String(a.franchise || "").localeCompare(String(b.franchise || ""), "fr");
+        if (byFranchise !== 0) return byFranchise;
+        return String(a.name || "").localeCompare(String(b.name || ""), "fr");
+      });
+      resolve({ meta: meta, figurines: figurines });
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Libellés (avec repli si meta.labels absent)                        */
+  /* ------------------------------------------------------------------ */
+
+  var DEFAULT_LABELS = {
+    sizes: { classic: "Classique", mini: "Mini", xl: "XL" },
+    packaging: { "first-edition": "First Edition", boxed: "Boxed" }
+  };
+
+  function sizeLabel(meta, size) {
+    var l = (meta && meta.labels && meta.labels.sizes) || DEFAULT_LABELS.sizes;
+    return l[size] || DEFAULT_LABELS.sizes[size] || size;
+  }
+
+  function packagingLabel(meta, packaging) {
+    var l = (meta && meta.labels && meta.labels.packaging) || DEFAULT_LABELS.packaging;
+    return l[packaging] || DEFAULT_LABELS.packaging[packaging] || packaging;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* État visiteur (localStorage)                                       */
+  /* ------------------------------------------------------------------ */
+
+  function emptyState() {
+    return { version: STATE_VERSION, owned: {}, wishlist: {}, notes: {} };
+  }
+
+  // Lecture tolérante : jamais d'exception qui casse la page.
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return emptyState();
+      var parsed = JSON.parse(raw);
+      return normalizeState(parsed);
+    } catch (e) {
+      console.warn("localStorage illisible, réinitialisation en mémoire :", e);
+      return emptyState();
+    }
+  }
+
+  function normalizeState(obj) {
+    var s = emptyState();
+    if (obj && typeof obj === "object") {
+      if (obj.owned && typeof obj.owned === "object") s.owned = obj.owned;
+      if (obj.wishlist && typeof obj.wishlist === "object") s.wishlist = obj.wishlist;
+      if (obj.notes && typeof obj.notes === "object") s.notes = obj.notes;
+    }
+    s.version = STATE_VERSION;
+    return s;
+  }
+
+  // Teste si l'écriture localStorage est réellement possible (certains navigateurs
+  // la bloquent en mode fichier local file://, ou en navigation privée).
+  function storageAvailable() {
+    try {
+      var k = "__tubbz_test__";
+      localStorage.setItem(k, "1");
+      localStorage.removeItem(k);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function saveState(state) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      return true;
+    } catch (e) {
+      console.error("Impossible d'écrire dans localStorage :", e);
+      return false;
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Mutations de l'état                                                */
+  /* ------------------------------------------------------------------ */
+
+  function variantKey(size, packaging) {
+    return size + "|" + packaging;
+  }
+
+  function isOwned(state, id, key) {
+    return !!(state.owned[id] && state.owned[id][key]);
+  }
+
+  // Bascule la possession d'une variante. Renvoie le nouvel état booléen.
+  function toggleOwned(state, id, key) {
+    if (!state.owned[id]) state.owned[id] = {};
+    if (state.owned[id][key]) {
+      delete state.owned[id][key];
+      if (Object.keys(state.owned[id]).length === 0) delete state.owned[id];
+    } else {
+      state.owned[id][key] = true;
+    }
+    saveState(state);
+    return isOwned(state, id, key);
+  }
+
+  function isWished(state, id) {
+    return !!state.wishlist[id];
+  }
+
+  function toggleWishlist(state, id) {
+    if (state.wishlist[id]) delete state.wishlist[id];
+    else state.wishlist[id] = true;
+    saveState(state);
+    return isWished(state, id);
+  }
+
+  function getNote(state, id) {
+    return state.notes[id] || "";
+  }
+
+  function setNote(state, id, text) {
+    text = (text || "").trim();
+    if (text) state.notes[id] = text;
+    else delete state.notes[id];
+    saveState(state);
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Statut agrégé d'une figurine                                       */
+  /* ------------------------------------------------------------------ */
+
+  // Renvoie "none" | "partial" | "full" selon les variantes possédées.
+  function ownedStateOf(state, figurine) {
+    var variants = figurine.variants || [];
+    if (variants.length === 0) return "none";
+    var owned = 0;
+    for (var i = 0; i < variants.length; i++) {
+      var key = variantKey(variants[i].size, variants[i].packaging);
+      if (isOwned(state, figurine.id, key)) owned++;
+    }
+    if (owned === 0) return "none";
+    if (owned === variants.length) return "full";
+    return "partial";
+  }
+
+  function ownedCountOf(state, figurine) {
+    var variants = figurine.variants || [];
+    var owned = 0;
+    for (var i = 0; i < variants.length; i++) {
+      var key = variantKey(variants[i].size, variants[i].packaging);
+      if (isOwned(state, figurine.id, key)) owned++;
+    }
+    return { owned: owned, total: variants.length };
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Petits utilitaires                                                 */
+  /* ------------------------------------------------------------------ */
+
+  // Échappe le texte destiné à être injecté en HTML.
+  function esc(str) {
+    return String(str == null ? "" : str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  // Formate une date ISO (YYYY-MM-DD) en français lisible ; tolère les valeurs vides.
+  function formatDate(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    try {
+      return d.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  return {
+    PLACEHOLDER: PLACEHOLDER,
+    loadCatalog: loadCatalog,
+    loadState: loadState,
+    saveState: saveState,
+    storageAvailable: storageAvailable,
+    normalizeState: normalizeState,
+    emptyState: emptyState,
+    variantKey: variantKey,
+    isOwned: isOwned,
+    toggleOwned: toggleOwned,
+    isWished: isWished,
+    toggleWishlist: toggleWishlist,
+    getNote: getNote,
+    setNote: setNote,
+    ownedStateOf: ownedStateOf,
+    ownedCountOf: ownedCountOf,
+    sizeLabel: sizeLabel,
+    packagingLabel: packagingLabel,
+    esc: esc,
+    formatDate: formatDate
+  };
+})();

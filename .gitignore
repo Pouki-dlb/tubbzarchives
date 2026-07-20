@@ -1,0 +1,7 @@
+# Fichiers système / éditeurs
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
