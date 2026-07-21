@@ -858,6 +858,7 @@ window.TUBBZ_DATA = {
       "id": "fallout-vault-boy",
       "name": "Vault Boy",
       "franchise": "Fallout",
+      "description": "Fallout fans will definitely give Vault Boy’s quacking new look a big thumbs up, he’s looking awesome as a TUBBZ cosplaying collectable. This officially licensed collectable toy is part of the TUBBZ range, a highly collectable series of your favourite gaming, movie, TV show, and pop culture characters in duck form! With incredibly detailed features, this is a must for fans.",
       "number": "1",
       "releaseYear": "2019",
       "variants": [
