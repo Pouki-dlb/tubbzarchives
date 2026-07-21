@@ -34,7 +34,7 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
 
 | Fichier                   | Rôle |
 |---------------------------|------|
-| `index.html` / `index.js` | Grille minimale : recherche, filtres, stats, export/import. |
+| `index.html` / `index.js` | Grille : recherche, filtres, cards (chips de variante), export/import. |
 | `duck.html` / `duck.js`   | Fiche détail (`duck.html?id=<id>`) : photos par variante, coches, wishlist, note. |
 | `common.js`               | Partagé : chargement catalogue, `localStorage`, helpers (`window.Tubbz`). |
 | `styles.css`              | Style, responsive, thème clair/sombre. |
@@ -45,10 +45,20 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
 
 - Interface du site **en anglais uniquement** ; noms de licences/personnages laissés tels quels.
   (Les commentaires de code peuvent rester en français.)
-- Tailles : `classic`, `mini`, `xl`. Emballages : `first-edition` (baignoire), `boxed` (boîte).
+- Tailles : `classic`, `mini`, `xl`. Emballages : `first-edition` (baignoire 🛁),
+  `boxed` (boîte 📦).
 - Images **déduites de l'`id`** (aucun chemin dans `data.js`) : principale `images/<id>.webp`,
   variante `images/<id>-<taille><emballage>.webp` (c/m/x + f/b, ex. `-cf`). Repli `placeholder.svg`
   via `onerror`. Helpers `Tubbz.imageFor` / `Tubbz.variantImageFor`.
+- **Chip de variante** = « taille + emoji d'emballage » (ex. « Classic 📦 »), helper
+  `Tubbz.variantChipLabel` ; couleur d'emballage via `Tubbz.packagingClass` (`pack-fe`/`pack-box`,
+  scopées `.chip` sur la fiche). Sur la fiche : une chip colorée par variante. Sur les cards de
+  l'index : **une chip par variante** = indicateur de possession (colorée + ✓ si possédée, grisée
+  sinon) ; **survol d'une chip → l'image de la card devient celle de la variante** (`data-img`),
+  clic = navigation vers la fiche. **Max 4 variantes/chips par figurine.**
+- Cards de l'index à **hauteur uniforme** (`.card-body` hauteur fixe) : nom+franchise en haut,
+  badges ancrés en bas (`margin-top:auto`). Pas de compteur « total · possédés » pour l'instant
+  (retiré, à réintroduire plus tard).
 - Le site doit rester ouvrable par **double-clic** sur `index.html` (`file://`) : ne PAS
   réintroduire de `fetch` vers un fichier local (bloqué en `file://`). Le catalogue passe par
   `<script src="data.js">`.
