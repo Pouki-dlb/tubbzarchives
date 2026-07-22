@@ -57,6 +57,20 @@ h1, h2, h3 { line-height: 1.2; }
 .wrap { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 16px; }
 .muted { color: var(--muted); }
 
+/* ---------------- Lien textuel cliquable (utilitaire global) ----------------
+   À mettre sur TOUT lien/texte cliquable en ligne (existant et futur),
+   SAUF le logo « Tubbz Archives » (.brand). Effet très subtil : au survol, le
+   texte vire simplement au jaune canard. Aucun soulignement. */
+.text-link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.text-link:hover,
+.text-link:focus-visible { color: var(--accent); }
+.text-link:focus-visible { outline: none; }
+
 /* ---------------- Boutons ---------------- */
 .btn {
   display: inline-flex; align-items: center; gap: .4em;
@@ -136,7 +150,7 @@ h1, h2, h3 { line-height: 1.2; }
   transition: transform .1s ease, border-color .15s ease;
 }
 .card:hover { transform: translateY(-3px); border-color: var(--accent); }
-.card-media { position: relative; aspect-ratio: 1 / 1; background: var(--surface-2); }
+.card-media { display: block; position: relative; aspect-ratio: 1 / 1; background: var(--surface-2); }
 .card-media img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
 .heart { position: absolute; top: 8px; right: 8px; font-size: 1.1rem; filter: drop-shadow(0 1px 2px rgba(0,0,0,.3)); }
 .num-badge {
@@ -158,10 +172,8 @@ h1, h2, h3 { line-height: 1.2; }
   margin: 2px 0 0; font-size: .82rem; color: var(--muted); line-height: 1.2;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-/* Nom de franchise cliquable → filtre la franchise (voir index.js). */
-.card-franchise-link { cursor: pointer; border-radius: 4px; }
-.card-franchise-link:hover { color: var(--text); text-decoration: underline; }
-.card-franchise-link:focus-visible { outline: 2px solid var(--accent, currentColor); outline-offset: 2px; }
+/* Nom de franchise cliquable → filtre la franchise (voir index.js).
+   Style porté par la classe utilitaire .text-link. */
 .card-chips {
   display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start;
   margin-top: auto;
@@ -170,7 +182,7 @@ h1, h2, h3 { line-height: 1.2; }
   font-size: .72rem; font-weight: 700; white-space: nowrap;
   padding: .18em .5em; border-radius: 999px;
   border: 1px solid var(--border); background: var(--surface-2); color: var(--muted);
-  transition: filter .12s ease;
+  cursor: pointer;
 }
 .card-chip.is-missing { opacity: .72; }
 .card-chip.is-owned.pack-fe {
@@ -181,7 +193,6 @@ h1, h2, h3 { line-height: 1.2; }
   background: color-mix(in srgb, var(--box) 18%, var(--surface));
   color: var(--box); border-color: color-mix(in srgb, var(--box) 45%, transparent);
 }
-.card-chip:hover { filter: brightness(1.08); }
 
 /* ---------------- Page détail (duck.html) ---------------- */
 .duck { margin: 20px 0 40px; }
@@ -194,8 +205,6 @@ h1, h2, h3 { line-height: 1.2; }
 .duck-hero-media img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
 .duck-name { margin: 0 0 4px; font-size: 1.8rem; }
 .duck-franchise { margin: 0 0 12px; color: var(--muted); font-weight: 600; }
-.duck-franchise .franchise-link { color: inherit; text-decoration: none; cursor: pointer; }
-.duck-franchise .franchise-link:hover { color: var(--text); text-decoration: underline; }
 .duck-meta { display: grid; gap: 8px; margin: 0 0 16px; }
 .duck-meta div { display: flex; gap: 8px; }
 .duck-meta dt { color: var(--muted); min-width: 120px; }

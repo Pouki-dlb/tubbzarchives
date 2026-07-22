@@ -71,7 +71,7 @@
               (fig.number ? '#' + T.esc(fig.number) + ' ' : '') + T.esc(fig.name) +
             '</h1>' +
             '<p class="duck-franchise">' +
-              '<a class="franchise-link" href="index.html?franchise=' +
+              '<a class="franchise-link text-link" href="index.html?franchise=' +
                 encodeURIComponent(fig.franchise) + '" ' +
                 'title="Show all ' + T.esc(fig.franchise) + ' ducks">' +
                 T.esc(fig.franchise) +

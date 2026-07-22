@@ -54,8 +54,12 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
   `Tubbz.variantChipLabel` ; couleur d'emballage via `Tubbz.packagingClass` (`pack-fe`/`pack-box`,
   scopées `.chip` sur la fiche). Sur la fiche : une chip colorée par variante. Sur les cards de
   l'index : **une chip par variante** = indicateur de possession (colorée + ✓ si possédée, grisée
-  sinon) ; **survol d'une chip → l'image de la card devient celle de la variante** (`data-img`),
-  clic = navigation vers la fiche. **Max 4 variantes/chips par figurine.**
+  sinon) ; **survol d'une chip → l'image de la card devient celle de la variante** (`data-img`).
+  **Clic sur une chip → navigue vers la fiche** (même destination que l'image/le nom), mais
+  **aucun effet de survol propre à la chip** (pas de halo). **Max 4 variantes/chips par figurine.**
+- **Card de l'index = `<div>`, PAS un lien global.** Mènent à la fiche : **l'image**
+  (`a.card-media`, en `tabindex=-1`), **le nom** (`a.card-name-link.text-link`) et **les chips**
+  (navigation JS). Le nom de franchise (`.card-franchise-link.text-link`) filtre la franchise.
 - Cards de l'index à **hauteur uniforme** (`.card-body` hauteur fixe) : nom+franchise en haut,
   badges ancrés en bas (`margin-top:auto`). Pas de compteur « total · possédés » pour l'instant
   (retiré, à réintroduire plus tard).
@@ -67,5 +71,9 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
   d'ouvrir la fiche, applique le filtre franchise (vide les autres filtres) et remonte en haut.
   Sur la fiche `duck.html` (`.franchise-link`) : lien vers `index.html?franchise=<nom>` ;
   l'index lit ce paramètre au chargement, applique le filtre et nettoie l'URL (comme `?home`).
+- **Liens textuels cliquables → classe `.text-link`** : effet **très subtil**, le texte vire
+  simplement au jaune canard (`--accent`) au survol. **Aucun soulignement.** À mettre sur tout
+  lien/texte cliquable en ligne, **existant et futur**. Seule exception : le logo « Tubbz
+  Archives » (`.brand`).
 - Toujours échapper le contenu injecté en HTML (`Tubbz.esc`).
 - Nouvelle logique partagée → `common.js` ; logique spécifique à une page → `index.js` / `duck.js`.

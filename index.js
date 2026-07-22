@@ -114,19 +114,24 @@
     var img = T.imageFor(fig.id);
     var url = "duck.html?id=" + encodeURIComponent(fig.id);
 
+    // La card n'est PAS un lien global : seuls l'image et le nom mènent à la fiche.
+    // (Le lien image est en tabindex=-1 pour ne pas doubler la tabulation clavier :
+    //  au clavier, on tabule sur le nom, qui pointe au même endroit.)
     return (
-      '<a class="card" href="' + url + '">' +
-        '<div class="card-media">' +
+      '<div class="card">' +
+        '<a class="card-media" href="' + url + '" tabindex="-1" aria-label="' + T.esc(fig.name) + '">' +
           '<img loading="lazy" src="' + T.esc(img) + '" data-default="' + T.esc(img) + '" ' +
             'alt="' + T.esc(fig.name) + '" ' +
             'onerror="this.onerror=null;this.src=\'' + T.PLACEHOLDER + '\'" />' +
           (fig.number ? '<span class="num-badge">#' + T.esc(fig.number) + '</span>' : '') +
           (wished ? '<span class="heart" title="In your wishlist" aria-label="Wishlist">❤</span>' : '') +
-        '</div>' +
+        '</a>' +
         '<div class="card-body">' +
-          '<h3 class="card-name">' + T.esc(fig.name) + '</h3>' +
+          '<h3 class="card-name">' +
+            '<a class="card-name-link text-link" href="' + url + '">' + T.esc(fig.name) + '</a>' +
+          '</h3>' +
           '<p class="card-franchise">' +
-            '<span class="card-franchise-link" role="link" tabindex="0" ' +
+            '<span class="card-franchise-link text-link" role="link" tabindex="0" ' +
               'data-franchise="' + T.esc(fig.franchise) + '" ' +
               'title="Show all ' + T.esc(fig.franchise) + ' ducks">' +
               T.esc(fig.franchise) +
@@ -134,7 +139,7 @@
           '</p>' +
           '<div class="card-chips">' + variantChips(fig) + '</div>' +
         '</div>' +
-      '</a>'
+      '</div>'
     );
   }
 
@@ -235,6 +240,17 @@
     im.src = src;
   }
 
+  // Clic sur une chip → navigue vers la fiche (même destination que l'image / le nom).
+  function bindChipNav() {
+    elGrid.addEventListener("click", function (e) {
+      var chip = e.target.closest(".card-chip");
+      if (!chip || !elGrid.contains(chip)) return;
+      var card = chip.closest(".card");
+      var link = card && card.querySelector("a.card-media, a.card-name-link");
+      if (link) window.location.href = link.getAttribute("href");
+    });
+  }
+
   function bindChipHover() {
     elGrid.addEventListener("mouseover", function (e) {
       var chip = e.target.closest(".card-chip");
@@ -279,6 +295,7 @@
 
   function bindEvents() {
     bindChipHover();
+    bindChipNav();
     bindFranchiseFilter();
 
     function onFilterChange() { render(); saveView(); }
