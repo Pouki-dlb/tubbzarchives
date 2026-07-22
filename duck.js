@@ -67,6 +67,9 @@
               'onerror="this.onerror=null;this.src=\'' + T.PLACEHOLDER + '\'" />' +
           '</div>' +
           '<div class="duck-hero-info">' +
+            '<h1 class="duck-name">' +
+              (fig.number ? '#' + T.esc(fig.number) + ' ' : '') + T.esc(fig.name) +
+            '</h1>' +
             '<p class="duck-franchise">' +
               '<a class="franchise-link" href="index.html?franchise=' +
                 encodeURIComponent(fig.franchise) + '" ' +
@@ -74,9 +77,7 @@
                 T.esc(fig.franchise) +
               '</a>' +
             '</p>' +
-            '<h1 class="duck-name">' + T.esc(fig.name) + '</h1>' +
             '<dl class="duck-meta">' +
-              '<div><dt>Number</dt><dd>' + (fig.number ? '#' + T.esc(fig.number) : '—') + '</dd></div>' +
               '<div><dt>Release year</dt><dd>' + (fig.releaseYear ? T.esc(fig.releaseYear) : 'Unknown') + '</dd></div>' +
             '</dl>' +
             (fig.description ? '<p class="duck-description">' + T.esc(fig.description) + '</p>' : '') +

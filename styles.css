@@ -192,10 +192,10 @@ h1, h2, h3 { line-height: 1.2; }
 }
 .duck-hero-media { background: var(--surface-2); border-radius: 12px; aspect-ratio: 1/1; display: grid; place-items: center; }
 .duck-hero-media img { width: 100%; height: 100%; object-fit: contain; padding: 14px; }
-.duck-franchise { margin: 0; color: var(--muted); font-weight: 600; }
+.duck-name { margin: 0 0 4px; font-size: 1.8rem; }
+.duck-franchise { margin: 0 0 12px; color: var(--muted); font-weight: 600; }
 .duck-franchise .franchise-link { color: inherit; text-decoration: none; cursor: pointer; }
 .duck-franchise .franchise-link:hover { color: var(--text); text-decoration: underline; }
-.duck-name { margin: 2px 0 12px; font-size: 1.8rem; }
 .duck-meta { display: grid; gap: 8px; margin: 0 0 16px; }
 .duck-meta div { display: flex; gap: 8px; }
 .duck-meta dt { color: var(--muted); min-width: 120px; }
