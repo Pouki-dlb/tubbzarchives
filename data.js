@@ -3071,6 +3071,8 @@ window.TUBBZ_DATA = {
       "name": "Agent Smith",
       "franchise": "The Matrix",
       "number": "4",
+      "releaseYear": "2025",
+      "description": "Mr. Anderson… Agent Smith transforms into a cosplay duck, with all his coldness and calculated menace intact. From the stylish sunglasses to the impeccable suit, this TUBBZ captures the relentless digital enforcer of the Matrix. A must-have for fans who know the system always fights back.",
       "variants": [
         { "size": "classic", "packaging": "first-edition" }
       ]
@@ -3080,8 +3082,11 @@ window.TUBBZ_DATA = {
       "name": "Morpheus",
       "franchise": "The Matrix",
       "number": "2",
+      "releaseYear": "2024",
+      "description": "Welcome to the Matrix: Morpheus has arrived and he’s bringing his iconic wisdom to the duck pond! This Morpheus TUBBZ collectible transforms the legendary Matrix mentor into a dapper cosplay duck, complete with his signature glasses and dark suit. Whether you’re a die-hard Matrix fan or just love original collectibles, Morpheus is ready to join Neo in your collection. Part of the Matrix TUBBZ series, this release is a must-have for fans who want to relive iconic moments from the film in duck form!",
       "variants": [
-        { "size": "classic", "packaging": "first-edition" }
+        { "size": "classic", "packaging": "first-edition" },
+        { "size": "classic", "packaging": "boxed" }
       ]
     },
     {
@@ -3089,8 +3094,11 @@ window.TUBBZ_DATA = {
       "name": "Neo",
       "franchise": "The Matrix",
       "number": "1",
+      "releaseYear": "2024",
+      "description": "Step into the Matrix and bring Neo home in duck form with the Neo TUBBZ collectible! As the one destined to save both his world and now the world of TUBBZ, this Matrix TUBBZ transforms the iconic hero into an epic cosplay duck, complete with his signature dark glasses and costume. Whether you’re a Matrix fan or just love original collectibles, Neo is ready to dive right into your collection. A must-have for any Matrix fan, this collectible strikes the perfect balance of action and fantasy!",
       "variants": [
-        { "size": "classic", "packaging": "first-edition" }
+        { "size": "classic", "packaging": "first-edition" },
+        { "size": "classic", "packaging": "boxed" }
       ]
     },
     {
@@ -3098,6 +3106,8 @@ window.TUBBZ_DATA = {
       "name": "Trinity",
       "franchise": "The Matrix",
       "number": "3",
+      "releaseYear": "2025",
+      "description": "Dressed in her iconic black look and trademark cool, this duck is perfect for fans who love bending the rules and dodging bullets.",
       "variants": [
         { "size": "classic", "packaging": "first-edition" }
       ]
