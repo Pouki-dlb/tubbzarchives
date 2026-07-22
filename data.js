@@ -156,6 +156,8 @@ window.TUBBZ_DATA = {
       "name": "Dr. David Bowman",
       "franchise": "2001 Space Odyssey",
       "number": "1",
+      "releaseYear": "2024",
+      "description": "“Open the pod bay doors, HAL!” - Dr. David Bowman has been transformed into a quacking TUBBZ collectible toy! Dressed in his signature orange space suit and helmet, this intrepid astronaut is ready to venture beyond the stars and into your collection. With meticulous detailing and a collector’s presentation box, this officially licensed 2001: A Space Odyssey TUBBZ is a must-have for sci-fi fans and collectors alike.",
       "variants": [
         {
           "size": "classic",
@@ -171,6 +173,8 @@ window.TUBBZ_DATA = {
       "id": "5-year-anniversary-splash",
       "name": "Splash",
       "franchise": "5 year Anniversary",
+      "releaseYear": "2024",
+      "description": "Introducing ‘Splash’, celebrating 5 quack-tastic years of TUBBZ! TUBBZ began with a simple rubber duck, the designers’ imaginations ran wild and created the cosplaying toy rubber duck legends that have gone down a storm with pop culture fans. Splash is part of the TUBBZ toy range, a highly collectible series of your favourite gaming, movie, TV show and pop culture characters in duck form!",
       "variants": [
         {
           "size": "classic",
@@ -183,10 +187,16 @@ window.TUBBZ_DATA = {
       "name": "Alex Delarge",
       "franchise": "A Clockworkd Orange",
       "number": "2",
+      "releaseYear": "2024",
+      "description": "The duck pond has taken a dystopian turn as Alex Delarge joins the toy collection. There’s no mistaking him, the detail is epic and captures him perfectly. He’s wearing the signature bowler hat, white button-down shirt (or is it a straitjacket) and of course one eye has the weird long eyelashes. ",
       "variants": [
         {
           "size": "classic",
           "packaging": "first-edition"
+        },
+        {
+          "size": "classic",
+          "packaging": "boxed"
         }
       ]
     },
@@ -1386,6 +1396,7 @@ window.TUBBZ_DATA = {
       "name": "Sergeant J.T \"Joker\" Davis",
       "franchise": "Full Metal Jacket",
       "number": "3",
+      "releaseYear": "2024",
       "variants": [
         {
           "size": "classic",
@@ -4484,6 +4495,7 @@ window.TUBBZ_DATA = {
       "name": "Jack Torrance",
       "franchise": "The Shining",
       "number": "4",
+      "releaseYear": "2024",
       "variants": [
         {
           "size": "classic",
