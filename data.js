@@ -124,6 +124,8 @@ window.TUBBZ_DATA = {
       "id": "assassin-s-creeds-ezio-auditore-da-firenze",
       "name": "Ezio Auditore Da Firenze",
       "franchise": "Assassin's Creeds",
+      "releaseYear": "2025",
+      "description": "Step into the shadows of Renaissance Italy with the Assassin’s Creed: Ezio TUBBZ. This legendary Master Assassin has been reimagined as a cosplaying duck, complete with his iconic hood, hidden blades, and unmistakable flair. From the sharp detailing on his robes to the confident stance, this duck is a must-have for any Assassin’s Creed fan looking to add a splash of stealth to their shelf.",
       "number": "1",
       "variants": [
         { "size": "classic", "packaging": "first-edition" }
@@ -133,6 +135,8 @@ window.TUBBZ_DATA = {
       "id": "assassin-s-creeds-kassandra",
       "name": "Kassandra",
       "franchise": "Assassin's Creeds",
+      "releaseYear": "2025",
+      "description": "The fearless mercenary turned legendary heroine has swapped her eagle for feathers!\n\nReimagined as a cosplaying duck, Kassandra dons her iconic Spartan armour and lethal weaponry, ready to leap into any battle or display shelf skirmish.\n\nWith intricate detailing that captures her strength, spirit, and sass, this collectible is an unmissable tribute to one of Assassin’s Creed’s fiercest leads.",
       "number": "2",
       "variants": [
         { "size": "classic", "packaging": "first-edition" }
