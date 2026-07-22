@@ -62,5 +62,10 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
 - Le site doit rester ouvrable par **double-clic** sur `index.html` (`file://`) : ne PAS
   réintroduire de `fetch` vers un fichier local (bloqué en `file://`). Le catalogue passe par
   `<script src="data.js">`.
+- **Clic sur un nom de franchise → filtre cette franchise.** Sur une card de l'index
+  (`.card-franchise-link`, à l'intérieur du lien de card) : le clic est intercepté, empêche
+  d'ouvrir la fiche, applique le filtre franchise (vide les autres filtres) et remonte en haut.
+  Sur la fiche `duck.html` (`.franchise-link`) : lien vers `index.html?franchise=<nom>` ;
+  l'index lit ce paramètre au chargement, applique le filtre et nettoie l'URL (comme `?home`).
 - Toujours échapper le contenu injecté en HTML (`Tubbz.esc`).
 - Nouvelle logique partagée → `common.js` ; logique spécifique à une page → `index.js` / `duck.js`.

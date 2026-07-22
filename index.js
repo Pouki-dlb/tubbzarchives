@@ -49,6 +49,19 @@
     if (v && v.scrollY) window.scrollTo(0, v.scrollY);
   }
 
+  // Clic sur une franchise (card de l'index ou fiche duck) : vue neuve filtrée
+  // sur cette seule franchise. On vide les autres filtres et on remonte en haut.
+  function applyFranchiseFilter(name) {
+    elSearch.value = "";
+    elFranchise.value = name || "";
+    elSize.value = "";
+    elPackaging.value = "";
+    elStatus.value = "";
+    render();
+    window.scrollTo(0, 0);
+    saveView();
+  }
+
   /* ---------------------------------------------------------------- */
   /* Filtrage                                                         */
   /* ---------------------------------------------------------------- */
@@ -112,7 +125,13 @@
         '</div>' +
         '<div class="card-body">' +
           '<h3 class="card-name">' + T.esc(fig.name) + '</h3>' +
-          '<p class="card-franchise">' + T.esc(fig.franchise) + '</p>' +
+          '<p class="card-franchise">' +
+            '<span class="card-franchise-link" role="link" tabindex="0" ' +
+              'data-franchise="' + T.esc(fig.franchise) + '" ' +
+              'title="Show all ' + T.esc(fig.franchise) + ' ducks">' +
+              T.esc(fig.franchise) +
+            '</span>' +
+          '</p>' +
           '<div class="card-chips">' + variantChips(fig) + '</div>' +
         '</div>' +
       '</a>'
@@ -238,8 +257,29 @@
   /* Événements                                                       */
   /* ---------------------------------------------------------------- */
 
+  // Clic (ou Entrée/Espace) sur le nom de franchise d'une card → filtre la franchise.
+  // Le nom est à l'intérieur du lien <a class="card"> : on empêche la navigation vers la fiche.
+  function bindFranchiseFilter() {
+    elGrid.addEventListener("click", function (e) {
+      var link = e.target.closest(".card-franchise-link");
+      if (!link || !elGrid.contains(link)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      applyFranchiseFilter(link.getAttribute("data-franchise"));
+    });
+    elGrid.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var link = e.target.closest(".card-franchise-link");
+      if (!link || !elGrid.contains(link)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      applyFranchiseFilter(link.getAttribute("data-franchise"));
+    });
+  }
+
   function bindEvents() {
     bindChipHover();
+    bindFranchiseFilter();
 
     function onFilterChange() { render(); saveView(); }
     [elSearch, elFranchise, elSize, elPackaging, elStatus].forEach(function (el) {
@@ -310,17 +350,30 @@
       checkStorage();
       populateFranchises();
       bindEvents();
-      // Le logo mène à "index.html?home" → accueil propre : on efface l'état mémorisé.
-      var goHome = false;
-      try { goHome = new URLSearchParams(location.search).has("home"); } catch (e) {}
+      // Paramètres d'URL :
+      //  - "?home"          (logo)     → accueil propre : on efface l'état mémorisé.
+      //  - "?franchise=<x>" (fiche)    → vue neuve filtrée sur cette franchise.
+      var params = null;
+      try { params = new URLSearchParams(location.search); } catch (e) {}
+      var goHome = !!(params && params.has("home"));
+      var franchiseParam = params ? params.get("franchise") : null;
+
       if (goHome) {
         try { sessionStorage.removeItem(VIEW_KEY); } catch (e) {}
+      }
+      // URL propre (retire ?home / ?franchise) une fois pris en compte.
+      if (goHome || franchiseParam) {
         try { history.replaceState(null, "", location.pathname); } catch (e) {}
       }
-      var v = goHome ? null : loadView();
-      applyView(v);      // restaure recherche + filtres (rien si accueil propre)
-      render();
-      restoreScroll(v);  // restaure la position de scroll (rien si accueil propre)
+
+      if (franchiseParam) {
+        applyFranchiseFilter(franchiseParam);  // set filtres + render + scroll top + saveView
+      } else {
+        var v = goHome ? null : loadView();
+        applyView(v);      // restaure recherche + filtres (rien si accueil propre)
+        render();
+        restoreScroll(v);  // restaure la position de scroll (rien si accueil propre)
+      }
     })
     .catch(function (err) {
       elGrid.setAttribute("aria-busy", "false");
