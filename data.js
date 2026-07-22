@@ -2677,6 +2677,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "5",
       "releaseYear": "2023",
+      "description": "Dr. Hal Emmerich aka \"Otacon\" is a brilliant engineer specialising in robotics and computer science - even as a cosplaying duck he’s able to assist Solid Snake and other Metal Gear Solid protagonists by providing them with his technical expertise and valuable intel. This one of a kind collectible is great for fans of the series to stock up on. Coming in a Metal Gear Solid branded box, this one-of-a-kind collectible toy is great for fans of the series to stock up on. ",
       "variants": [
         {
           "size": "classic",
@@ -2695,6 +2696,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "3",
       "releaseYear": "2021",
+      "description": "Stand Guard With Genome Soldier TUBBZ.\nThe Genome Army was created to deal with terrorist activities, and their skills were strengthened through gene therapy using the genes of Big Boss. Now, the Genome Soldier can stand guard beside your bedside or bathtub (or on your display shelf!) as a premium TUBBZ.\n\nA loveable rubber duck toy has been transformed into a formidable and lethal Genome soldier from the Metal Gear Solid franchise. These characters are known for their superior reflexes, senses and combat skills. Our yellow cosplaying duck is seen wearing a snow tactical jacket with the Foxhound logo embossed on it and the Naked Snake STABO Harness. The TUBBZ duck also holds a gun and is wearing a holster to carry his ammunition. ",
       "variants": [
         {
           "size": "classic",
@@ -2703,6 +2705,10 @@ window.TUBBZ_DATA = {
         {
           "size": "classic",
           "packaging": "boxed"
+        },
+        {
+          "size": "mini",
+          "packaging": "first-edition"
         }
       ]
     },
@@ -2712,6 +2718,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "4",
       "releaseYear": "2021",
+      "description": "Want to bring the legendary cyborg ninja, Gray Fox, to your collection? The Metal Gear Solid: Gray Fox TUBBZ transforms the stealthy, high-tech warrior into an extraordinary rubber duck toy, blending his cold, tactical edge with a playful twist. This TUBBZ perfectly captures Gray Fox’s iconic look while adding a dose of quirky charm.\n\nGray Fox, clad in his distinctive exoskeleton suit and wielding a razor-sharp katana, is ready for battle, even in duck form. With meticulous attention to detail, this collectable showcases his sleek armour, glowing eye, and combat-ready stance, capturing everything that makes him a fan-favourite character. His intense expression and precise weaponry ensure that even as a duck, Gray Fox is not one to mess with.",
       "variants": [
         {
           "size": "classic",
@@ -2733,6 +2740,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "7",
       "releaseYear": "2025",
+      "description": "Go tactical with the Naked Snake TUBBZ. A stealthy tribute to the legendary soldier from Metal Gear Solid 3: Snake Eater. With his iconic sneaking suit, bandana, and steely expression, this cosplaying duck channels Snake’s survival instincts and battlefield grit, all in TUBBZ’s unmistakable style. A must-have for any operative’s shelf.",
       "variants": [
         {
           "size": "classic",
@@ -2746,6 +2754,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "6",
       "releaseYear": "2023",
+      "description": "One of the most iconic villains in the Metal Gear Solid series, Psycho Mantis has the ability to read the minds of his enemies, so he's going to know exactly what the other TUBBZ think of him as a cosplaying duck! This one of a kind collectible toy is great for fans of the series to stock up on.",
       "variants": [
         {
           "size": "classic",
@@ -2764,6 +2773,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "2",
       "releaseYear": "2020",
+      "description": "Revolver Ocelot has adopted various identities to further his goals in the Metal Gear Solid series but no-one expected him to be a cosplaying duck! With a history of working as a triple agent, the other TUBBZ should be wary of trusting him too much. This one of a kind collectible is great for fans of the series to stock up on.",
       "variants": [
         {
           "size": "classic",
@@ -2798,6 +2808,7 @@ window.TUBBZ_DATA = {
       "franchise": "Metal Gear Solid",
       "number": "1",
       "releaseYear": "2020",
+      "description": "Make the Impossible Possible With A Solid Snake TUBBZ!\n\nAre you ready to make friends with a special operation soldier and mercenary known for his marksmanship? Solid Snake can now be part of your gang as an adorable and unique rubber duck toy. Solid Snake TUBBZ is a tribute to one of the greatest heroes of the gaming world. ",
       "variants": [
         {
           "size": "classic",
