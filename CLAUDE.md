@@ -83,8 +83,13 @@ cosplayés, marque Numskull) et permet à un visiteur de **suivre sa collection*
   d'ouvrir la fiche, applique le filtre franchise (vide les autres filtres) et remonte en haut.
   Sur la fiche `duck.html` (`.franchise-link`) : lien vers `index.html?franchise=<nom>` ;
   l'index lit ce paramètre au chargement, applique le filtre et nettoie l'URL (comme `?home`).
+- **Un seul orange sur tout le site : `#ee8804`** (orange officiel Tubbz), porté par `--accent`
+  (et `--partial`). Ne pas réintroduire d'autre orange/ambre ; utiliser `var(--accent)`.
+- **Logo « Tubbz Archives » (`.brand`)** : **pas d'emoji**. « Tubbz » en gras
+  (`<strong class="brand-name">`) aux couleurs du logo officiel — « Tubb » en jaune `#ffe103`,
+  « z » (`.brand-z`) en orange `var(--accent)` ; « Archives » en texte normal (couleur héritée).
 - **Liens textuels cliquables → classe `.text-link`** : effet **très subtil**, le texte vire
-  simplement au jaune canard (`--accent`) au survol. **Aucun soulignement.** À mettre sur tout
+  simplement à l'orange accent (`--accent`) au survol. **Aucun soulignement.** À mettre sur tout
   lien/texte cliquable en ligne, **existant et futur**. Seule exception : le logo « Tubbz
   Archives » (`.brand`).
 - Toujours échapper le contenu injecté en HTML (`Tubbz.esc`).

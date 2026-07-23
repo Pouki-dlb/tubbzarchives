@@ -8,12 +8,12 @@
   --text: #1d2733;
   --muted: #6b7787;
   --border: #dce3ec;
-  --accent: #f0a821;         /* jaune canard */
+  --accent: #ee8804;         /* orange officiel Tubbz (couleur unique du site) */
   --accent-ink: #7a5400;
   --fe: #2b8ac6;             /* First Edition (baignoire) */
   --box: #8a6d4b;            /* Boxed (carton) */
   --ok: #2e9e5b;
-  --partial: #d98e00;
+  --partial: #ee8804;
   --none: #97a2b0;
   --danger: #c0392b;
   --shadow: 0 1px 3px rgba(20, 30, 45, .08), 0 6px 20px rgba(20, 30, 45, .06);
@@ -28,12 +28,12 @@
     --text: #e7edf4;
     --muted: #9aa7b6;
     --border: #2c3644;
-    --accent: #f0a821;
+    --accent: #ee8804;
     --accent-ink: #ffd786;
     --fe: #4aa9e0;
     --box: #c39a6b;
     --ok: #3fbd72;
-    --partial: #f0b429;
+    --partial: #ee8804;
     --none: #6b7787;
     --danger: #e15a4b;
     --shadow: 0 1px 3px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .3);
@@ -117,14 +117,15 @@ h1, h2, h3 { line-height: 1.2; }
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; }
 .brand { display: inline-flex; align-items: center; gap: .5em; text-decoration: none; font-size: 1.15rem; }
-.brand-mark { font-size: 1.4em; }
-.brand-text strong { color: var(--accent-ink); }
+/* Logo « Tubbz Archives » : « Tubbz » en gras aux couleurs du logo officiel
+   (Tubb jaune #ffe103, z orange --accent) ; « Archives » en texte normal. */
+.brand-name { color: #ffe103; }
+.brand-name .brand-z { color: var(--accent); }
 .header-actions { display: flex; gap: 8px; }
 /* Titre + slogan empilés en colonne à gauche : le slogan passe SOUS le titre.
    Réduit → l'ensemble tient dans la hauteur existante du header (69px inchangés). */
 .brand-block { display: flex; flex-direction: column; gap: 0; line-height: 1.1; }
 .brand-block .brand { line-height: 1.1; }
-.brand-block .brand-mark { font-size: 1.2em; }
 .tagline { margin: 0; font-style: italic; color: var(--muted); font-size: .72rem; line-height: 1.1; white-space: nowrap; }
 
 .site-footer { margin-top: 40px; border-top: 1px solid var(--border); padding: 20px 0; font-size: .9rem; }
